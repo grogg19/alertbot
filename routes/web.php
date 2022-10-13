@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::post('/webhook', [TelegramController::class, 'index']);
+Route::get('/test', [TelegramController::class, 'test']);
