@@ -15,11 +15,19 @@ class TelegramController extends Controller
      * @param TelegramBotService $telegramBotService
      *
      * @return void
+     * @throws \Exception
      */
     public function index(Request $request, TelegramBotService $telegramBotService): void
     {
         if ($request->isJson()) {
             $telegramBotService->handler();
         }
+    }
+
+    /**
+     * @return void
+     */
+    public function test()
+    {
     }
 }
