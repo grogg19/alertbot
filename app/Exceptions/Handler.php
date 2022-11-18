@@ -2,9 +2,13 @@
 
 namespace App\Exceptions;
 
+use App\Actions\TelegramSendMessageAction;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
+/**
+ * Class Handler
+ */
 class Handler extends ExceptionHandler
 {
     /**
@@ -37,11 +41,22 @@ class Handler extends ExceptionHandler
     ];
 
     /**
+     * @param Throwable $e
+     *
+     * @return void
+     */
+    public function report(Throwable $e): void
+    {
+        $message = "String: {$e->getLine()}, File: {$e->getFile()} Description: {$e->getMessage()}";
+        TelegramSendMessageAction::send(config('telegram.chat_id_default'), $message);
+    }
+
+    /**
      * Register the exception handling callbacks for the application.
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->reportable(function (Throwable $e) {
             //
