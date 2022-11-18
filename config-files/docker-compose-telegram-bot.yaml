@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  telegram-bot-api:
+    container_name: ${HOST_NAME}_telegram_bot
+    platform: linux/x86_64
+    image: aiogram/telegram-bot-api:6.3.2
+    environment:
+      TELEGRAM_API_ID: ${TELEGRAM_API_ID}
+      TELEGRAM_API_HASH: ${TELEGRAM_API_HASH}
+      TELEGRAM_LOCAL: ${TELEGRAM_LOCAL}
+    volumes:
+      - telegram-bot-api-data:/var/lib/telegram-bot-api
+    ports:
+      - "8081:8081"
+volumes:
+  telegram-bot-api-data:
