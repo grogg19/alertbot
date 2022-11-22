@@ -3,18 +3,19 @@
 namespace App\Repositories;
 
 use App\Models\TelegramChat;
+use Illuminate\Support\Collection;
 
 /**
  * Class TelegramChatRepository
  */
 class TelegramChatRepository
 {
-    public function getTelegramChatById(int $id): TelegramChat|null
+    public function getTelegramChatByChatId(int $chatId): Collection
     {
-        return TelegramChat::find($id);
+        return TelegramChat::where('chat_id', $chatId)->get();
     }
 
-    public function getTelegramChatByUsername(string $userName): TelegramChat|null
+    public function getTelegramChatByUsername(string $userName): Collection
     {
         return TelegramChat::where('username', $userName)->get();
     }
